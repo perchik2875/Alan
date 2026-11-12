@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "alan"
+version = "1.2.0"
+description = "Alan — a private, context-aware knowledge assistant"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "aiogram>=3.13,<4",
+    "httpx>=0.27,<1",
+    "pydantic>=2.7,<3",
+    "python-dotenv>=1.0,<2",
+    "PyYAML>=6.0,<7",
+    "tzdata>=2024.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.2", "pytest-asyncio>=0.23"]
+
+[project.scripts]
+alan = "alan.cli:main"
+
+[tool.setuptools]
+packages = ["alan", "alan.bot", "alan.core", "alan.ingest", "alan.llm", "alan.proactive", "alan.store"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
